@@ -1,0 +1,48 @@
+{
+    "compilerOptions": {
+        "lib": [
+            "DOM",
+            "ES2020"
+        ],
+        "jsx": "preserve",
+        "target": "ES2020",
+        "noEmit": true,
+        "skipLibCheck": true,
+        "jsxImportSource": "vue",
+        "useDefineForClassFields": true,
+        /* modules */
+        "module": "ESNext",
+        "isolatedModules": true,
+        "resolveJsonModule": true,
+        /* "moduleResolution": "bundler", */
+        "moduleResolution": "bundler",
+        "allowImportingTsExtensions": true,
+        /* type checking */
+        "strict": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        /* Configure TS type definition recognition */
+        //        "types": [
+        //            "node",
+        //            "vue",
+        //            "element-plus/global"
+        //        ],
+        "typeRoots": [
+            "./node_modules/@types",
+            "./types"
+        ],
+        "paths": {
+            "@/*": [
+                "./src/*"
+            ],
+            "@wheakerd/*": [
+                "./packages/*"
+            ]
+        }
+    },
+    "include": [
+        "src",
+        "packages",
+        "types"
+    ]
+}

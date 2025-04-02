@@ -1,0 +1,44 @@
+{
+    "name": "hyperf-cms-web",
+    "version": "1.0.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "build": "rsbuild build",
+        "dev": "rsbuild dev --mode development",
+        "preview": "rsbuild preview"
+    },
+    "engines": {
+        "node": ">=22.0.0",
+        "bun": ">=1.2.0"
+    },
+    "dependencies": {
+        "@iconify/json": "^2.2.323",
+        "axios": "^1.8.4",
+        "element-plus": "^2.9.7",
+        "pinia": "^3.0.1",
+        "pinia-plugin-persistedstate": "^4.2.0",
+        "vue": "^3.5.13",
+        "vue-router": "^4.5.0"
+    },
+    "devDependencies": {
+        "@rsbuild/core": "^1.3.2",
+        "@rsbuild/plugin-babel": "^1.0.4",
+        "@rsbuild/plugin-sass": "^1.3.1",
+        "@rsbuild/plugin-type-check": "^1.2.1",
+        "@rsbuild/plugin-vue": "^1.0.7",
+        "@rsbuild/plugin-vue-jsx": "^1.1.0",
+        "@rsdoctor/rspack-plugin": "^1.0.1",
+        "@stylistic/eslint-plugin": "^4.2.0",
+        "@types/dotenv-webpack": "^7.0.8",
+        "@types/node": "^22.13.17",
+        "@typescript-eslint/parser": "^8.29.0",
+        "bootstrap": "^5.3.3",
+        "dotenv-webpack": "^8.1.0",
+        "eslint": "^9.23.0",
+        "eslint-plugin-import": "^2.31.0",
+        "eslint-plugin-import-curly": "^1.0.2",
+        "eslint-plugin-vue": "^10.0.0",
+        "typescript": "^5.8.2"
+    }
+}
