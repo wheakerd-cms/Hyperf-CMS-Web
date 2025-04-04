@@ -13,11 +13,6 @@ import {pluginVueJsx,} from '@rsbuild/plugin-vue-jsx';
 // noinspection JSUnusedGlobalSymbols
 export default defineConfig({
     mode: 'development',
-    source: {
-        entry: {
-            index: './index.ts',
-        },
-    },
     server: {
         open: false,
     },
