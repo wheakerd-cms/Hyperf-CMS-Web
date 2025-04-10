@@ -13,7 +13,7 @@ import {
 import {ElMessage,} from 'element-plus';
 import {REQUEST_TIMEOUT,} from '@/application/admin/constants';
 
-export const PATH_URL = import.meta.env.VITE_API_BASE_PATH;
+export const PATH_URL = import.meta.env.BASE_URL;
 
 const abortControllerMap: Map<string, AbortController> = new Map();
 

@@ -25,12 +25,14 @@ export default defineConfig({
             plugins: [
                 // 仅在 RS DOCTOR 为 true 时注册插件，因为插件会增加构建耗时
                 process.env.RSDOCTOR && new RsdoctorRspackPlugin({}),
-                new rspack.EnvironmentPlugin([
-                    'RS_BUILD_GLOB_API_URL',
-                ]),
                 new Dotenv(),
                 new rspack.CssExtractRspackPlugin({}),
             ],
+        },
+        postcss: (options, {
+            addPlugins,
+        }) => {
+            addPlugins(require('tailwindcss'));
         },
     },
     plugins: [

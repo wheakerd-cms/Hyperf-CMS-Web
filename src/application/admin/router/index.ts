@@ -3,51 +3,52 @@ import {
     createWebHistory,
     type Router,
 } from 'vue-router';
+import appPlugin from '@/plugin/app.plugin.ts';
+import {useUserStoreWithOut,} from '@/application/admin/stores/userStore.ts';
+
+console.log(appPlugin.baseUrl);
+
+// const loginRoutes = [
+//     {
+//         path: '/',
+//         redirect: '/home',
+//     },
+//
+//     {
+//         path: '/home',
+//         name: 'home',
+//         redirect: '/home/index',
+//         component: () => import('@/application/admin/layouts/index.vue',),
+//         children: [
+//             {
+//                 path: 'index',
+//                 name: 'home-index',
+//                 component: () => import('@/application/admin/views/home/index/index.vue',),
+//             },
+//         ],
+//     },
+//     {
+//         path: '/permission',
+//         name: 'permission',
+//         component: () => import('@/application/admin/layouts/index.vue',),
+//         children: [
+//             {
+//                 path: 'menu',
+//                 name: 'permission-menu',
+//
+//                 component: () => import('@/application/admin/views/permissions/menu/index.vue',),
+//             },
+//         ],
+//     },
+// ];
 
 const router: Router = createRouter({
-    history: createWebHistory(import.meta.env.BASE_URL),
+    history: createWebHistory(appPlugin.baseUrl),
     routes: [
-        {
-            path: '/',
-            redirect: '/home',
-        },
         {
             path: '/login',
             name: 'login',
-            redirect: '/login/password',
-            children: [
-                {
-                    path: 'password',
-                    name: 'login-password',
-                    component: () => import('@/application/admin/views/login/password/index.vue',),
-                },
-            ],
-        },
-        {
-            path: '/home',
-            name: 'home',
-            redirect: '/home/index',
-            component: () => import('@/application/admin/layout/index.vue',),
-            children: [
-                {
-                    path: 'index',
-                    name: 'home-index',
-                    component: () => import('@/application/admin/views/home/index/index.vue',),
-                },
-            ],
-        },
-        {
-            path: '/permission',
-            name: 'permission',
-            component: () => import('@/application/admin/layout/index.vue',),
-            children: [
-                {
-                    path: 'menu',
-                    name: 'permission-menu',
-
-                    component: () => import('@/application/admin/views/permissions/menu/index.vue',),
-                },
-            ],
+            component: () => import('@/application/admin/views/login/index.vue',),
         },
         {
             path: '/404',
@@ -60,6 +61,24 @@ const router: Router = createRouter({
             redirect: '/404',
         },
     ],
+});
+
+router.beforeEach((to, _, next) => {
+    const userStore = useUserStoreWithOut();
+    // getLoggedIn
+    if (userStore.getLoggedIn) {
+        if (to.path === '/login') {
+            next('/');
+        }
+    } else {
+        console.log('/login'.includes(to.path), to.path);
+        if ('/login'.includes(to.path)) {
+
+            next();
+        } else {
+            next(`/login?redirectTo=${to.path}`);
+        }
+    }
 });
 
 export default router;
