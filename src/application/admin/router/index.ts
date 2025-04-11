@@ -18,25 +18,25 @@ console.log(appPlugin.baseUrl);
 //         path: '/home',
 //         name: 'home',
 //         redirect: '/home/index',
-//         component: () => import('@/application/admin/layouts/index.vue',),
+//         component: () => import('@/application/admin/layouts/index._vue',),
 //         children: [
 //             {
 //                 path: 'index',
 //                 name: 'home-index',
-//                 component: () => import('@/application/admin/views/home/index/index.vue',),
+//                 component: () => import('@/application/admin/views/home/index/index._vue',),
 //             },
 //         ],
 //     },
 //     {
 //         path: '/permission',
 //         name: 'permission',
-//         component: () => import('@/application/admin/layouts/index.vue',),
+//         component: () => import('@/application/admin/layouts/index._vue',),
 //         children: [
 //             {
 //                 path: 'menu',
 //                 name: 'permission-menu',
 //
-//                 component: () => import('@/application/admin/views/permissions/menu/index.vue',),
+//                 component: () => import('@/application/admin/views/permissions/menu/index._vue',),
 //             },
 //         ],
 //     },
@@ -48,7 +48,7 @@ const router: Router = createRouter({
         {
             path: '/login',
             name: 'login',
-            component: () => import('@/application/admin/views/login/index.vue',),
+            component: () => import('@/application/admin/views/_core/authentication/code-login.vue',),
         },
         {
             path: '/404',
