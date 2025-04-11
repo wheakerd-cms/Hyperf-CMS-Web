@@ -40,6 +40,8 @@ function parseSvg(svgData: string): IconifyIconStructure {
 async function loadSvgIcons() {
     const svgEagers = import.meta.webpackContext('./icons');
 
+    console.log(svgEagers);
+
     // const svgEagers = import.meta.glob('./icons/**', {
     //     eager: true,
     //     query: '?raw',

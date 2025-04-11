@@ -1,22 +1,24 @@
 {
     "name": "@vben/icons",
     "version": "5.5.4",
-    "homepage": "https://github.com/vbenjs/vue-vben-admin",
-    "bugs": "https://github.com/vbenjs/vue-vben-admin/issues",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/vbenjs/vue-vben-admin.git",
         "directory": "packages/icons"
     },
-    "license": "MIT",
-    "type": "module",
+    "dependencies": {
+        "@vben-core/icons": "workspace:*",
+        "pinia": "^3.0.2",
+        "pinia-plugin-persistedstate": "^4.2.0"
+    },
     "exports": {
         ".": {
             "types": "./src/index.ts",
             "default": "./src/index.ts"
         }
     },
-    "dependencies": {
-        "@vben-core/icons": "workspace:*"
-    }
+    "bugs": "https://github.com/vbenjs/vue-vben-admin/issues",
+    "homepage": "https://github.com/vbenjs/vue-vben-admin",
+    "license": "MIT",
+    "type": "module"
 }
