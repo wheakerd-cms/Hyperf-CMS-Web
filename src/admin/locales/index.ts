@@ -20,11 +20,17 @@ import defaultLocale from 'element-plus/es/locale/lang/zh-cn';
 
 const elementLocale = ref<Language>(defaultLocale);
 
-const modules = import.meta.glob('./langs/**/*.json');
+const modules = import.meta.webpackContext('./langs', {
+    recursive: true,
+    regExp: /\.json$/,
+    mode: 'eager',
+});
+
+console.log(modules.keys());
 
 const localesMap = loadLocalesMapFromDir(
     /\.\/langs\/([^/]+)\/(.*)\.json$/,
-    modules
+    modules.keys()
 );
 
 /**
