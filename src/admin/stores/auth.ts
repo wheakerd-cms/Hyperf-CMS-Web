@@ -24,8 +24,8 @@ import {
     getUserInfoApi,
     loginApi,
     logoutApi,
-} from '@admin/api';
-import {$t,} from '@admin/locales';
+} from '#admin/api';
+import {$t,} from '#admin/locales';
 
 export const useAuthStore = defineStore('auth', () => {
     const accessStore = useAccessStore();
@@ -38,6 +38,7 @@ export const useAuthStore = defineStore('auth', () => {
      * 异步处理登录操作
      * Asynchronously handle the login process
      * @param params 登录表单数据
+     * @param onSuccess
      */
     async function authLogin(
         params: Recordable<any>,

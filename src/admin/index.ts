@@ -3,6 +3,8 @@ import {unmountGlobalLoading,} from '@vben/utils';
 
 import {overridesPreferences,} from './preferences';
 import {bootstrap,} from './bootstrap';
+// import './index.css';
+// import './index._scss';
 
 /**
  * 应用初始化完成之后再进行页面加载渲染
@@ -14,8 +16,6 @@ import {bootstrap,} from './bootstrap';
     const appVersion = import.meta.env.VITE_APP_VERSION;
     const namespace = `${import.meta.env.VITE_APP_NAMESPACE}-${appVersion}-${env}`;
 
-    console.log(appVersion, namespace);
-
     // app偏好设置初始化
     await initPreferences({
         namespace,
@@ -24,12 +24,8 @@ import {bootstrap,} from './bootstrap';
 
     // 启动应用并挂载
     // vue应用主要逻辑及视图
-    // const {
-    //     bootstrap,
-    // } = await import('./bootstrap',);
     await bootstrap(namespace);
 
     // 移除并销毁loading
     unmountGlobalLoading();
-    console.log(8);
 })();

@@ -1,3 +1,9 @@
 @import "bootstrap/scss/bootstrap";
 
 @import "element-plus/theme-chalk/src/index.scss";
+
+
+#root {
+    min-height: 100vh;
+    min-width: 100vw;
+}

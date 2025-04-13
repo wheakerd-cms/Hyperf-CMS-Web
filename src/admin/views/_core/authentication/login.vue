@@ -5,10 +5,11 @@ import type {BasicOption} from '@vben/types';
 
 import {computed, markRaw} from 'vue';
 import {$t} from '@vben/locales';
+import {useAuthStore} from "#admin/stores";
 
 defineOptions({name: 'Login'});
 
-// const authStore = useAuthStore();
+const authStore = useAuthStore();
 
 const MOCK_USER_OPTIONS: BasicOption[] = [
     {

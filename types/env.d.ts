@@ -1,8 +1,11 @@
+//  types/env.d.ts
 /// <reference types="@rsbuild/core/types" />
 
-interface ImportMetaEnv {
-    readonly env: ImportMetaEnv;
-    readonly RSBUILD_ROUTER_HISTORY: string;
+declare global {
+    interface ImportMetaEnv {
+        readonly env: ImportMetaEnv;
+        readonly RSBUILD_ROUTER_HISTORY: string;
+    }
 }
 
 declare module '*.vue' {

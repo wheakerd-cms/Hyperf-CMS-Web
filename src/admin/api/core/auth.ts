@@ -1,7 +1,7 @@
 import {
     baseRequestClient,
     requestClient,
-} from '@admin/api/request';
+} from '#admin/api/request';
 
 export namespace AuthApi {
     /** 登录接口参数 */

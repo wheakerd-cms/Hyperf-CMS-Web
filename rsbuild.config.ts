@@ -1,14 +1,24 @@
 import {
     defineConfig,
+    loadEnv,
     rspack,
 } from '@rsbuild/core';
 import {pluginVue,} from '@rsbuild/plugin-vue';
-import Dotenv from 'dotenv-webpack';
+// import Dotenv from 'dotenv-webpack';
 import {RsdoctorRspackPlugin,} from '@rsdoctor/rspack-plugin';
 import {pluginBabel,} from '@rsbuild/plugin-babel';
 import {pluginSass,} from '@rsbuild/plugin-sass';
 import {pluginTypeCheck,} from '@rsbuild/plugin-type-check';
 import {pluginVueJsx,} from '@rsbuild/plugin-vue-jsx';
+
+const {
+    publicVars,
+} = loadEnv({
+    prefixes: [
+        'VITE_',
+        'RSBUILD_',
+    ],
+});
 
 // noinspection JSUnusedGlobalSymbols
 export default defineConfig({
@@ -20,12 +30,18 @@ export default defineConfig({
         progressBar: true,
         liveReload: true,
     },
+    source: {
+        entry: {
+            index: './index.ts',
+        },
+        define: publicVars,
+    },
     tools: {
         rspack: {
             plugins: [
                 // 仅在 RS DOCTOR 为 true 时注册插件，因为插件会增加构建耗时
                 process.env.RSDOCTOR && new RsdoctorRspackPlugin({}),
-                new Dotenv(),
+                // new Dotenv(),
                 new rspack.CssExtractRspackPlugin({}),
             ],
         },

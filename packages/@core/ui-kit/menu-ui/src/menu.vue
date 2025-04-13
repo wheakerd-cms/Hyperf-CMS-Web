@@ -1,24 +1,24 @@
-<script setup lang="ts">
-import type { MenuRecordRaw } from '@vben-core/typings';
+<script lang="ts" setup>
+import type {MenuRecordRaw} from '@vben-core/typings';
 
-import type { MenuProps } from './types';
+import type {MenuProps} from './types';
 
-import { useForwardProps } from '@vben-core/composables';
+import {useForwardProps} from '@vben-core/composables';
 
-import { Menu } from './components';
+import {Menu} from './components';
 import SubMenu from './sub-menu.vue';
 
 interface Props extends MenuProps {
-  menus: MenuRecordRaw[];
+    menus: MenuRecordRaw[];
 }
 
 defineOptions({
-  name: 'MenuView',
+    name: 'MenuView',
 });
 
 const props = withDefaults(defineProps<Props>(), {
-  collapse: false,
-  // theme: 'dark',
+    collapse: false,
+    // theme: 'dark',
 });
 
 const forward = useForwardProps(props);
@@ -30,9 +30,9 @@ const forward = useForwardProps(props);
 </script>
 
 <template>
-  <Menu v-bind="forward">
-    <template v-for="menu in menus" :key="menu.path">
-      <SubMenu :menu="menu" />
-    </template>
-  </Menu>
+    <Menu v-bind="forward">
+        <template v-for="menu in menus" :key="menu.path">
+            <SubMenu :menu="menu"/>
+        </template>
+    </Menu>
 </template>

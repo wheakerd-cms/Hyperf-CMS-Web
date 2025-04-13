@@ -24,7 +24,7 @@
     "module": "./dist/index.mjs",
     "exports": {
         ".": {
-            "types": "./src/index.ts",
+            "types": "./src/types.ts",
             "development": "./src/index.ts",
             "default": "./dist/index.mjs"
         }

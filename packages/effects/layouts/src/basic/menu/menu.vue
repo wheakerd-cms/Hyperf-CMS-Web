@@ -1,44 +1,41 @@
 <script lang="ts" setup>
-import type { MenuRecordRaw } from '@vben/types';
-
-import type { MenuProps } from '@vben-core/menu-ui';
-
-import { Menu } from '@vben-core/menu-ui';
+import type {Menu, MenuProps} from '@vben-core/menu-ui/src';
+import type {MenuRecordRaw} from "@vben-core/typings/src";
 
 interface Props extends MenuProps {
-  menus: MenuRecordRaw[];
+    menus: MenuRecordRaw[];
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  accordion: true,
-  menus: () => [],
+    accordion: true,
+    menus: () => [],
 });
 
 const emit = defineEmits<{
-  open: [string, string[]];
-  select: [string, string?];
+    open: [string, string[]];
+    select: [string, string?];
 }>();
 
 function handleMenuSelect(key: string) {
-  emit('select', key, props.mode);
+    emit('select', key, props.mode);
 }
 
 function handleMenuOpen(key: string, path: string[]) {
-  emit('open', key, path);
+    emit('open', key, path);
 }
 </script>
 
 <template>
-  <Menu
-    :accordion="accordion"
-    :collapse="collapse"
-    :collapse-show-title="collapseShowTitle"
-    :default-active="defaultActive"
-    :menus="menus"
-    :mode="mode"
-    :rounded="rounded"
-    :theme="theme"
-    @open="handleMenuOpen"
-    @select="handleMenuSelect"
-  />
+    <Menu
+        :accordion="accordion"
+        :collapse="collapse"
+        :collapse-show-title="collapseShowTitle"
+        :default-active="defaultActive"
+        :menus="menus"
+        :mode="mode"
+        :rounded="rounded"
+        :theme="theme"
+        @open="handleMenuOpen"
+        @select="handleMenuSelect"
+    />
 </template>

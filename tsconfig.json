@@ -5,7 +5,8 @@
             "ES2020"
         ],
         "jsx": "preserve",
-        "target": "ES2020",
+        // 设置目标 ECMAScript 版本，适用于最新版本
+        "target": "ESNext",
         "noEmit": true,
         "skipLibCheck": true,
         "jsxImportSource": "vue",
@@ -13,30 +14,58 @@
         /* modules */
         "module": "ESNext",
         "isolatedModules": true,
-        "resolveJsonModule": true,
         /* "moduleResolution": "bundler", */
         "moduleResolution": "bundler",
+        // 启用对 ES 模块的兼容
+        "esModuleInterop": true,
+        // 允许默认导入
+        "allowSyntheticDefaultImports": true,
         "allowImportingTsExtensions": true,
         /* type checking */
         "strict": true,
         "noUnusedLocals": true,
         "noUnusedParameters": true,
+        // 确保文件名大小写一致
+        "forceConsistentCasingInFileNames": true,
+        // 允许导入 JSON 模块
+        "resolveJsonModule": true,
         "typeRoots": [
-            "./node_modules/@types",
-            "./types"
+            // 默认类型根目录
+            "node_modules/@types",
+            // 自定义包类型声明目录
+            "node_modules/@vben/types/src"
+        ],
+        // 项目的基本路径，通常是根目录
+        "baseUrl": ".",
+        "types": [
         ],
         "paths": {
             "@/*": [
-                "./src/*"
+                "./*"
             ],
-            "@admin/*": [
-                "./src/application/admin/*"
+            "#admin/*": [
+                "./src/admin/*"
             ]
         }
     },
     "include": [
+        /* type checking */
+        "types/**/*.d.ts",
+        /* main */
+        "index.ts",
+        /* project files */
+        "plugin",
+        "plugin/**/*",
+        "plugin/**/*.ts",
         "src",
-        "packages",
-        "types"
+        "src/**/*.ts",
+        "src/**/*.tsx",
+        "src/**/*.vue",
+        /* global views */
+        "views"
+    ],
+    "exclude": [
+        // 排除 node_modules 中的文件
+        "node_modules"
     ]
 }

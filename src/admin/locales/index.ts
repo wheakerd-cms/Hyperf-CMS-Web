@@ -26,12 +26,20 @@ const modules = import.meta.webpackContext('./langs', {
     mode: 'eager',
 });
 
-console.log(modules.keys());
+let modulesMap = {} as unknown as Record<string, () => Promise<unknown>>;
+
+modules.keys().forEach((key: string) => {
+    modulesMap[key] = () => modules(key) as unknown as Promise<unknown>;
+});
+
+console.log(modulesMap);
 
 const localesMap = loadLocalesMapFromDir(
-    /\.\/langs\/([^/]+)\/(.*)\.json$/,
-    modules.keys()
+    /\.\/([^/]+)\/(.*)\.json$/,
+    modulesMap
 );
+
+console.log(localesMap);
 
 /**
  * 加载应用特有的语言包
@@ -39,6 +47,7 @@ const localesMap = loadLocalesMapFromDir(
  * @param lang
  */
 async function loadMessages(lang: SupportedLanguagesType) {
+
     const [appLocaleMessages,] = await Promise.all([
         localesMap[lang]?.(),
         loadThirdPartyMessage(lang),
@@ -99,6 +108,7 @@ async function loadElementLocale(lang: SupportedLanguagesType) {
 }
 
 async function setupI18n(app: App, options: LocaleSetupOptions = {}) {
+
     await coreSetup(app, {
         defaultLocale: preferences.app.locale,
         loadMessages,

@@ -2,10 +2,7 @@ import type {RouteRecordRaw,} from 'vue-router';
 
 import type {MenuRecordRaw,} from '@vben-core/typings';
 
-import {
-    acceptHMRUpdate,
-    defineStore,
-} from 'pinia';
+import {defineStore,} from 'pinia';
 
 type AccessToken = null | string;
 
@@ -43,13 +40,20 @@ interface AccessState {
 /**
  * @zh_CN 访问权限相关
  */
-export const useAccessStore = defineStore('core-access', {
+export const useAccessStore = defineStore<'core-access', AccessState>('core-access', {
+    state: (): AccessState => ({
+        accessCodes: [],
+        accessMenus: [],
+        accessRoutes: [],
+        accessToken: null,
+        isAccessChecked: false,
+        loginExpired: false,
+        refreshToken: null,
+    }),
+    getters: {},
     actions: {
         getMenuByPath(path: string) {
-            function findMenu(
-                menus: MenuRecordRaw[],
-                path: string
-            ): MenuRecordRaw | undefined {
+            const findMenu = (menus: MenuRecordRaw[], path: string): MenuRecordRaw | undefined => {
                 for (const menu of menus) {
                     if (menu.path === path) {
                         return menu;
@@ -61,7 +65,7 @@ export const useAccessStore = defineStore('core-access', {
                         }
                     }
                 }
-            }
+            };
 
             return findMenu(this.accessMenus, path);
         },
@@ -91,19 +95,10 @@ export const useAccessStore = defineStore('core-access', {
         // 持久化
         pick: ['accessToken', 'refreshToken', 'accessCodes',],
     },
-    state: (): AccessState => ({
-        accessCodes: [],
-        accessMenus: [],
-        accessRoutes: [],
-        accessToken: null,
-        isAccessChecked: false,
-        loginExpired: false,
-        refreshToken: null,
-    }),
 });
 
 // 解决热更新问题
-const hot = import.meta.hot;
-if (hot) {
-    hot.accept(acceptHMRUpdate(useAccessStore, hot));
-}
+// const hot = RsbuildConfig.dev.hmr;
+// if (hot) {
+//     hot.accept(acceptHMRUpdate(useAccessStore, hot));
+// }

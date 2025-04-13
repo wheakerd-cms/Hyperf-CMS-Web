@@ -13,6 +13,7 @@
     "sideEffects": [
         "**/*.css"
     ],
+    "main": "src/index.ts",
     "exports": {
         ".": {
             "types": "./src/index.ts",
